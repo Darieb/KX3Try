@@ -28,11 +28,11 @@ MODES = ['CW', 'USB', 'LSB', 'Data', 'AM', 'FM']
 SUB_MODES = ['DATA-A', 'AFSK-A', 'FSK-D', 'PSK-D']
 
 def command(text:str) -> str:
-   """
-   command() sends the text (command) on port, and reads data until a ";"
+    """
+    command() sends the text (command) on port, and reads data until a ";"
     is returned. No error checking here.
     Returns the data as a string.
-   """
+    """
     port.write((text + ';').encode('cp1252'))
     line = ""
     while not line.endswith(';'):
