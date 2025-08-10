@@ -1,3 +1,20 @@
+#! /usr/local/bin/python3
+'''
+ktry
+A toy program to try to decipher Elecraft KX3 memories.
+- Originally reads from "commands" file in same directory, which included
+    selected data from the Elecraft Memory Windoze program.
+- Eventually made it to using and parsing NamedTuples. Unfortunately,
+    these never made it into the CHIRP driver, because they're immutable!
+
+Plans include parsing the status bytes (xvtr and band)
+Plans also include reading directly from radio via USB, but that requires
+    live connection to radio, which prohibits playing with data offline.
+
+2025-08-09
+@Copyright 2024-2025 by Declan Rieb, WD5EQY@ARRL.net
+'''
+
 import string
 from struct import pack, unpack, calcsize
 from typing import NamedTuple
@@ -16,6 +33,10 @@ RADIO_CHARS = "\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f"
 my_valids = str.maketrans(RADIO_CHARS, VALID_CHARS, "\xFF")
 MODES = ['CW', 'USB', 'LSB', 'Data', 'AM', 'FM']
 SUB_MODES = ['DATA-A', 'AFSK-A', 'FSK-D', 'PSK-D']
+# Following file contains dialog corresponding to "read status"
+FILENAME = 'commands_status'
+# Following file contains results of partial radio memory reads
+# FILENAME = 'commands'
 
 class ElecraftMemory(NamedTuple):
     """ Elecraft regular  memory message format
@@ -51,46 +72,6 @@ class ElecraftCommand(NamedTuple):
     length: int
     cksum: int
 
-class ElecraftSpecial(NamedTuple):
-    """ Elecraft special memory message format
-        (unpacked from 0x40 bytes, which includes the ER/EW command """
-    #  opcode: bytes  # two bytes  But it's not stored in the radio
-    address: int
-    length: int
-    rvfoa: bytes
-    rvfob: bytes
-    modes: bytes    # modeb and modea in one byte
-    dmode: bytes    # digital submode, speed and ¿bits?
-    f2: bytes
-    f3: bytes
-    f4: bytes
-    band: bytes     # xvrtr bit and band index
-    rvfoa1: bytes
-    rvfob1: bytes
-    modes1: bytes    # modeb and modea in one byte
-    dmode1: bytes    # digital submode, speed and ¿bits?
-    f21: bytes
-    f31: bytes
-    f41: bytes
-    band1: bytes     # xvrtr bit and band index
-    rvfoa2: bytes
-    rvfob2: bytes
-    modes2: bytes    # modeb and modea in one byte
-    dmode2: bytes    # digital submode, speed and ¿bits?
-    f22: bytes
-    f32: bytes
-    f42: bytes
-    band2: bytes     # xvrtr bit and band index
-    rvfoa3: bytes
-    rvfob3: bytes
-    modes3: bytes    # modeb and modea in one byte
-    dmode3: bytes    # digital submode, speed and ¿bits?
-    f23: bytes
-    f33: bytes
-    f43: bytes
-    band3: bytes     # xvrtr bit and band index
-    cksum: int
-
 """ Magic for decoding the radio's responses are in FMT here:
     Assumes 68 characters, converted from text hex string of 136 chars
     These will be decoded into the ElecraftMem NamedTuple above
@@ -111,6 +92,8 @@ FMT1 = 'B'
 FMT2 = '5s5s6B'
 FMTn = 'b'
 FMTo = 'i'
+
+status = [bytes(16) for _ in range(35)]
 
 def parse_VFO(byt : bytearray) -> int:
     MHz = byt[0]
@@ -154,7 +137,7 @@ print("\n\n\n"
       "-----------------------------------------------------------------\n"
       "-----------------------------------------------------------------\n"
       )
-with open("commands", "r") as f:
+with open(FILENAME, "r") as f:
     a = ' '
     print("OP    Mem  Label Freq A   mode  Freq B     mode Submode\n")
     while a != '':
@@ -162,20 +145,25 @@ with open("commands", "r") as f:
         n = len(a)
         # data too short to even try
         if n <= 3:
-            break
+            continue
         b = bytes.fromhex(a[2:-1])
         c = len(b)
+        slabl = ''
         address = unpack(FMT0, b[:2])[0]
         if address >= MEMSTART:
             memnum = int((address - MEMSTART) / MEMSIZE)
             FMT = FMT0 + FMT1 + FMT2 + FMT3 + FMTn
             MEM = ElecraftMemory
         elif BNDSTART <= address <= MEMSTART:
+            # Here starts status reads
             memnum = int((address - BNDSTART) / BNDSIZE)
-            FMT = FMT0 + FMT1 + FMT2 + FMT2 + FMT2 + FMT2 + FMTn
-            MEM = ElecraftSpecial
-            print(f"\nSpecial {memnum} {address:04x} {FMT} {c} {calcsize(FMT)}")
-            print(a,"\n",b)
+            nstats = (c - 4) // BNDSIZE
+            print(f"\nStatus {memnum} {address:04x} {nstats}\n{c}")
+            for i in range(nstats):
+                bstart = 3 + i*16
+                status[memnum + i] = b[bstart:bstart + 16]
+                print(f'{memnum + i}={status[memnum+i]}')
+            continue
         if n == 11:
             FMT = FMT0 + FMT1 + FMTn
             MEM = ElecraftCommand
