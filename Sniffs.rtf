@@ -1,0 +1,398 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\vieww19620\viewh15840\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs30 \cf0 All actions with radio starts with the following set of debug messages:\
+They will hereby be omitted.\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Using serial port COM4\
+Context.State: SpeedState\
+Attempting to contact transceiver on port COM4 at 38400 bps.\
+SpeedState send ";"\
+Calling SpeedState.OnDataReceived after 12 msec with Response ";"	[times vary from 0-20 ms]\
+Found transceiver at 38400 bit/s\
+Context.State: GetOptionModuleState\
+Context.State: ReadNormalBandMemoryState\
+Context.State: ReadTransverterBandMemoryState\
+Context.State: ReadTransverterState\
+Context.State: WriteMemory1State
+\f0\b \
+\
+\
+\
+Read All from radio:\
+
+\f1\b0 180 memories selected, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199\
+Context.State: ReadMemory2State\
+Reading memory 00\
+ReadMemory2State send "ER0C0040B4;"\
+Calling ReadMemory2State.OnDataReceived after 237 msec with Response "ER0C0040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEF;"\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 01 to Radio: Label=KKOB, VFOA=0.770, Mode=AM
+\f1\b0 \
+Writing memory 01\
+WriteMemory2State send "EW0C4040004D000000004D000000000000000000000000000000000000000000000000000B0B0F0200000000000000000000000000000000000000000000000000FFFFFFB6;"\
+Calling WriteMemory2State.OnDataReceived after 664 msec with Response "EW0C404074;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+\cf0 Request complete in 1 seconds.\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b \cf0 Write 02 to Radio: Label=KKOB, VFOA=0.770, Mode=AM-S/USB
+\f1\b0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 Context.State: WriteMemory2State\
+Writing memory 02\
+WriteMemory2State send "EW0C8040004D000000004D000000000000000000000000000000000000000000000000000B0B0F0200000000000000000000000000000000000000000000000000FFFFFF76;"\
+Calling WriteMemory2State.OnDataReceived after 385 msec with Response "EW0C804034;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+\cf0 Request complete in 0 seconds.\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 03 to Radio: Label=KKOB, VFOA=0.770, Mode=AM-S/LSB
+\f1\b0 \
+\
+Context.State: WriteMemory2State\
+Writing memory 03\
+WriteMemory2State send "EW0CC040004D000000004D000000000000000000000000000000000000000000000000000B0B0F0200000000000000000000000000000000000000000000000000FFFFFF36;"\
+Calling WriteMemory2State.OnDataReceived after 472 msec with Response "EW0CC040F4;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 1 seconds.\
+Click Close to continue\
+\
+\
+
+\f0\b Write 04 to Radio: Label=WWV, VFOA=10.0, Mode=AM\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 \
+Context.State: WriteMemory2State\
+Writing memory 04\
+WriteMemory2State send "EW0D00400A000000000A00000000050000000004000000000000000000000000000000001717160000000000000000000000000000000000000000000000000000FFFFFF55;"\
+Calling WriteMemory2State.OnDataReceived after 404 msec with Response "EW0D0040B3;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 04 to Radio: Label=WWV, VFOA=10.0, Mode=CW
+\f1\b0 \
+Context.State: WriteMemory2State\
+Writing memory 04\
+WriteMemory2State send "EW0D00400A000000000A00000000050000000004000000000000000000000000000000001717160000000000000000000000000000000000000000000000000000FFFFFF55;"\
+Calling WriteMemory2State.OnDataReceived after 274 msec with Response "EW0D0040B3;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+
+\f0\b Write 04 to Radio: Label=WWV, VFOA=10.0, Mode=CW-REV
+\f1\b0 \
+Context.State: WriteMemory2State\
+Writing memory 04\
+WriteMemory2State send "EW0D00400A000000000A00000000050000000004000000000000000000000000000000001177160000000000000000000000000000000000000000000000000000FFFFFF55;"\
+Calling WriteMemory2State.OnDataReceived after 257 msec with Response "EW0D0040B3;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+\
+
+\f0\b Write 05 to Radio: Label=FT8, VFOA=14.078, Mode=DATA\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Context.State: WriteMemory2State\
+Writing memory 05\
+WriteMemory2State send "EW0D40400E075000000E07500000000000000005000000000000000000000000000000000614230000000000000000000000000000000000000000000000000000FFFFFF6A;"\
+Calling WriteMemory2State.OnDataReceived after 742 msec with Response "EW0D404073;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 1 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 05 to Radio: Label=FT8, VFOA=14.078, Mode=DATA-REV\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Context.State: WriteMemory2State\
+Writing memory 05\
+WriteMemory2State send "EW0D40400E075000000E07500000000000000005000000000000000000000000000000000614230000000000000000000000000000000000000000000000000000FFFFFF6A;"\
+Calling WriteMemory2State.OnDataReceived after 251 msec with Response "EW0D404073;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 05 to Radio: Label=FT8, VFOA=14.078, Mode=FM
+\f1\b0 \
+Context.State: WriteMemory2State\
+Writing memory 05\
+WriteMemory2State send "EW0D40400E075000000E07500000000000000005000000000000000000000000000000000614230000000000000000000000000000000000000000000000000000FFFFFF6A;"\
+Calling WriteMemory2State.OnDataReceived after 270 msec with Response "EW0D404073;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+
+\f0\b Write 06 to Radio: Label=WWV, VFOA=15, Mode=LSB\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Context.State: WriteMemory2State\
+Writing memory 06\
+WriteMemory2State send "EW0D80400F000000000F00000000010000000005000000000000000000000000000000001717160000000000000000000000000000000000000000000000000000FFFFFFCE;"\
+Calling WriteMemory2State.OnDataReceived after 726 msec with Response "EW0D804033;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 1 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 06 to Radio: Label=WWV, VFOA=15, Mode=USB\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Context.State: WriteMemory2State\
+Writing memory 06\
+WriteMemory2State send "EW0D80400F000000000F00000000010000000005000000000000000000000000000000001717160000000000000000000000000000000000000000000000000000FFFFFFCE;"\
+Calling WriteMemory2State.OnDataReceived after 279 msec with Response "EW0D804033;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Read 01 from Radio: Label=KKOB, VFOA=0.770, Mode=AM\
+N.B. actually came back as CW.
+\f1\b0 \
+1 memories selected, 1\
+Context.State: ReadMemory2State\
+Reading memory 01\
+ReadMemory2State send "ER0C404074;"\
+Calling ReadMemory2State.OnDataReceived after 289 msec with Response "ER0C4040004D000000004D000000000000000000000000000000000000000000000000000B0B0F0200000000000000000000000000000000000000000000000000FFFFFFB6;"\
+FrequencyMemory Label KKOB  Description \
+BandMemory BandID 0 Band160\
+VfoA 0.770000 ModeA 0 Text CW Display CW\
+VfoB 0.770000 Mode 0 Text CW Display CW\
+DataMode 0 DATA A Split False\
+Flags 00 00 00 00\
+\
+MiscBandMemory\
+\
+Context.State: ReadMemory1State\
+Context.State: FinalState\
+Request complete in 1 seconds.\
+Click Close to continue\
+\
+
+\f0\b REWrite 01 to Radio: Label=KKOB, VFOA=0.770, Mode=AM, VFOB=0.70, Mode=CW
+\f1\b0 \
+Context.State: WriteMemory2State\
+Writing memory 01\
+WriteMemory2State send "EW0C4040004D000000004D000000000000000000000000000000000000000000000000000B0B0F0200000000000000000000000000000000000000000000000000FFFFFFB6;"\
+Calling WriteMemory2State.OnDataReceived after 258 msec with Response "EW0C404074;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+
+\f0\b \
+RERead 01 from Radio: Label=KKOB, VFOA=0.770, Mode=AM\
+N.B. actually came back as CW.
+\f1\b0 \
+1 memories selected, 1\
+Context.State: ReadMemory2State\
+Reading memory 01\
+ReadMemory2State send "ER0C404074;"\
+Calling ReadMemory2State.OnDataReceived after 271 msec with Response "ER0C4040004D000000004D000000000000000000000000000000000000000000000000000B0B0F0200000000000000000000000000000000000000000000000000FFFFFFB6;"\
+FrequencyMemory Label KKOB  Description \
+BandMemory BandID 0 Band160\
+VfoA 0.770000 ModeA 0 Text CW Display CW\
+VfoB 0.770000 Mode 0 Text CW Display CW\
+DataMode 0 DATA A Split False\
+Flags 00 00 00 00\
+\
+MiscBandMemory\
+\
+Context.State: ReadMemory1State\
+Context.State: FinalState\
+Request complete in 1 seconds.\
+Click Close to continue\
+\
+
+\f0\b Write 05 to Radio: Label=FT8, VFOA=14.078, Mode=DATA, Data Mode=DATA A\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Context.State: WriteMemory2State\
+Writing memory 05\
+WriteMemory2State send "EW0D40400E075000000E07500000030400000005020004000000000000000000000000000614230000000000000000000000000000000000000000000000000000FFFFFF5D;"\
+Calling WriteMemory2State.OnDataReceived after 293 msec with Response "EW0D404073;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 1 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 05 to Radio: Label=FT8, VFOA=14.078, Mode=DATA, Data Mode=AFSK A\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Context.State: WriteMemory2State\
+Writing memory 05\
+WriteMemory2State send "EW0D40400E075000000E07500000030400000005020004000000000000000000000000000614230000000000000000000000000000000000000000000000000000FFFFFF5D;"\
+Calling WriteMemory2State.OnDataReceived after 304 msec with Response "EW0D404073;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 05 to Radio: Label=FT8, VFOA=14.078, Mode=DATA, Data Mode=FSK D\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Context.State: WriteMemory2State\
+Writing memory 05\
+WriteMemory2State send "EW0D40400E075000000E07500000030400000005020004000000000000000000000000000614230000000000000000000000000000000000000000000000000000FFFFFF5D;"\
+Calling WriteMemory2State.OnDataReceived after 285 msec with Response "EW0D404073;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Write 05 to Radio: Label=FT8, VFOA=14.078, Mode=DATA, Data Mode=PSK D\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 Context.State: WriteMemory2State\
+Writing memory 05\
+WriteMemory2State send "EW0D40400E075000000E07500000030400000005020004000000000000000000000000000614230000000000000000000000000000000000000000000000000000FFFFFF5D;"\
+Calling WriteMemory2State.OnDataReceived after 274 msec with Response "EW0D404073;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 Refresh Config\
+[Skips reading transporter states and write 1\'85]
+\f1\b0 \
+Reading normal band memories\
+ReadNormalBandMemoryState send "ER010040BF;"\
+Calling ReadNormalBandMemoryState.OnDataReceived after 256 msec with Response "ER0100400154000000015400000033053201140003391E000003391E000033043A0114010500000000046355000034043A0014020707280000070728000023051A0214034B;"\
+ReadNormalBandMemoryState send "ER0140407F;"\
+Calling ReadNormalBandMemoryState.OnDataReceived after 259 msec with Response "ER0140400A0E0000000A0E00000033053A0114040E075000000E0728000033053A001405120A000000120A0000003305120114061507500000150728000043051A061407C7;"\
+ReadNormalBandMemoryState send "ER0180304F;"\
+Calling ReadNormalBandMemoryState.OnDataReceived after 179 msec with Response "ER018030185C140000185B32000033053A0114081C075000001C0728000033051A011409321F500000321F1E000033051B20140AC4;"\
+Context.State: ReadTransverterBandMemoryState\
+Reading transverter band memories\
+ReadTransverterBandMemoryState send "ER020040BE;"\
+Calling ReadTransverterBandMemoryState.OnDataReceived after 270 msec with Response "ER0200401C000000001C0000000022251A0014001C000000001C0000000022251A0014001C000000001C0000000022251A0014001C000000001C0000000022251A0014000A;"\
+ReadTransverterBandMemoryState send "ER0240407E;"\
+Calling ReadTransverterBandMemoryState.OnDataReceived after 257 msec with Response "ER0240401C000000001C0000000022251A0014001C000000001C0000000022251A0014001C000000001C0000000022251A0014001C000000001C0000000022251A001400CA;"\
+ReadTransverterBandMemoryState send "ER0280106E;"\
+Calling ReadTransverterBandMemoryState.OnDataReceived after 95 msec with Response "ER0280101C000000001C0000000022251A001400C1;"\
+Context.State: ReadTransverterState\
+Reading transverter assignments\
+ReadTransverterState send "ER02A2401C;"\
+Calling ReadTransverterState.OnDataReceived after 281 msec with Response "ER02A24019092C0100000000000029092C0100000000000039092C0100000000000049092C0100000000000059092C0100000000000069092C0100000000000079092C01A3;"\
+ReadTransverterState send "ER02E21A02;"\
+Calling ReadTransverterState.OnDataReceived after 128 msec with Response "ER02E21A00000000000089092C0100000000000099092C0100000000000074;"\
+Context.State: ReadMemory1State\
+0 memories selected\
+Context.State: FinalState\
+Request complete in 2 seconds.\
+Click Close to continue\
+\
+
+\f0\b Erase Selected (1 selected, All chosen)
+\f1\b0 \
+Context.State: WriteMemory2State\
+Erasing memory 01\
+WriteMemory2State send "EW0C4040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB4;"\
+Calling WriteMemory2State.OnDataReceived after 810 msec with Response "EW0C404074;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 1 seconds.\
+Click Close to continue\
+\
+
+\f0\b Erase selected (00-06 selected, All chosen)
+\f1\b0 \
+Context.State: WriteMemory2State\
+Erasing memory 00\
+WriteMemory2State send "EW0C0040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4;"\
+Calling WriteMemory2State.OnDataReceived after 324 msec with Response "EW0C0040B4;"\
+Context.State: WriteMemory1State\
+Context.State: WriteMemory2State\
+Erasing memory 01\
+WriteMemory2State send "EW0C4040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB4;"\
+Calling WriteMemory2State.OnDataReceived after 278 msec with Response "EW0C404074;"\
+Context.State: WriteMemory1State\
+Context.State: WriteMemory2State\
+Erasing memory 02\
+WriteMemory2State send "EW0C8040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF74;"\
+Calling WriteMemory2State.OnDataReceived after 815 msec with Response "EW0C804034;"\
+Context.State: WriteMemory1State\
+Context.State: WriteMemory2State\
+Erasing memory 03\
+WriteMemory2State send "EW0CC040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF34;"\
+Calling WriteMemory2State.OnDataReceived after 816 msec with Response "EW0CC040F4;"\
+Context.State: WriteMemory1State\
+Context.State: WriteMemory2State\
+Erasing memory 04\
+WriteMemory2State send "EW0D0040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF3;"\
+Calling WriteMemory2State.OnDataReceived after 827 msec with Response "EW0D0040B3;"\
+Context.State: WriteMemory1State\
+Context.State: WriteMemory2State\
+Erasing memory 05\
+WriteMemory2State send "EW0D4040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB3;"\
+Calling WriteMemory2State.OnDataReceived after 806 msec with Response "EW0D404073;"\
+Context.State: WriteMemory1State\
+Context.State: WriteMemory2State\
+Erasing memory 06\
+WriteMemory2State send "EW0D8040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF73;"\
+Calling WriteMemory2State.OnDataReceived after 829 msec with Response "EW0D804033;"\
+Context.State: WriteMemory1State\
+Context.State: FinalState\
+Request complete in 6 seconds.\
+Click Close to continue\
+\
+
+\f0\b QSY on ID 13\
+[skips transporter and write checks.]
+\f1\b0\fs32 \
+BContext.State: ChangeFrequencyState\
+ChangeFrequencyState send "MC013;FA;"\
+Calling ChangeFrequencyState.OnDataReceived after 336 msec with Response "FA00014078010;"\
+Context.State: FinalState\
+Request complete in 0 seconds.\
+Click Close to continue\
+\
+\
+\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+\cf0 \
+}
