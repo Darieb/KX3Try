@@ -93,9 +93,10 @@ FMT2 = '5s5s6B'
 FMTn = 'b'
 FMTo = 'i'
 
-status = [bytes(16) for _ in range(35)]
+band_state = [bytes(16) for _ in range(25)]
+xvtr_state = [bytes(10) for _ in range(9)]
 
-def parse_VFO(byt : bytearray) -> int:
+def parse_VFO(byt : bytes) -> int:
     MHz = byt[0]
     tkH = byt[1]
     hHz = byt[2]
@@ -144,7 +145,7 @@ with open(FILENAME, "r") as f:
         a = f.readline().rstrip()
         n = len(a)
         # data too short to even try
-        if n <= 3:
+        if n <= 3 or a[0] == '#':
             continue
         b = bytes.fromhex(a[2:-1])
         c = len(b)
@@ -156,14 +157,41 @@ with open(FILENAME, "r") as f:
             MEM = ElecraftMemory
         elif BNDSTART <= address <= MEMSTART:
             # Here starts status reads
-            memnum = int((address - BNDSTART) / BNDSIZE)
-            nstats = (c - 4) // BNDSIZE
-            print(f"\nStatus {memnum} {address:04x} {nstats}\n{c}")
-            for i in range(nstats):
-                bstart = 3 + i*16
-                status[memnum + i] = b[bstart:bstart + 16]
-                print(f'{memnum + i}={status[memnum+i]}')
-            continue
+            lenstat = 10
+            if address >= 0x2a2:
+                # Transverter state
+                # if using long reads, the state MAY be split between reads
+                memnum = (address - 0x2a2) // lenstat
+                nstats = (c - 4) // lenstat
+                for i in range(nstats):
+                    bstart = 3 + i * lenstat
+                    bs = b[bstart: bstart + lenstat]
+                    xvtr_state[memnum + i] = bs
+                    print(f'XVTR State[{memnum + i}]="{bs.hex()}"'
+                         )
+                continue
+            else:
+                lenstat = 0x10   
+                memnum = (address - BNDSTART) // BNDSIZE
+                nstats = (c - 4) // lenstat
+                if nstats <= 0:
+                    # This is a command or broken; ignore it
+                    continue
+                # This contains state data
+                for i in range(nstats):
+                    bstart = 3 + i * lenstat
+                    bs = b[bstart: bstart + lenstat]
+                    band_state[memnum + i] = bs
+                    # print(f'{memnum + i:2d}={band_state[memnum+i].hex()}')
+                    l = parse_VFO(bs[:5])
+                    lfreq = f'{l // 1000000:2d}.{l % 1000000:<6d}'
+                    h = parse_VFO(bs[5:10])
+                    hfreq = f'{h // 1000000:2d}.{h % 1000000:<6d}'
+                    print(f'Band[{memnum + i + 1:2d}]: '
+                          f'VFO A={lfreq}, VFO B={hfreq}.'
+                          f'\tstate="{bs[10:].hex()}"'
+                         )
+                continue
         if n == 11:
             FMT = FMT0 + FMT1 + FMTn
             MEM = ElecraftCommand
